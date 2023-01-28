@@ -1,12 +1,22 @@
 import {styled} from "@mui/material"
+import { Box } from "@mui/system";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 
 
 function App() {
   return (
-    <div className="App">
+    <Box sx={{backgroundColor:"#ececec",height:"100vh"}}>
+
+    
+
+    <Navbar/>
+    <Box sx={{display:'flex', flexDirection: 'column', justifyContent:'center', alignItems: 'center'}}>
       <HomePage/>
-    </div>
+      <Footer/>
+    </Box>
+    </Box>
   );
 }
 

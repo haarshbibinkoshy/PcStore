@@ -1,16 +1,17 @@
 import { Box, Stack } from '@mui/material'
 import React from 'react'
+import FindProduct from '../components/FindProduct'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 
 const HomePage = () => {
   return (
-    <Stack direction={'column'} sx={{backgroundColor:'blueviolet'}}>
+    <Box sx={{ width:"75%"}}>
 
-    <Navbar/>
-    HomePage
-    <Footer/>
-    </Stack>
+   
+    <FindProduct></FindProduct>
+    
+    </Box>
   )
 }
 
