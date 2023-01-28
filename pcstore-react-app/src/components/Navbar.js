@@ -32,7 +32,7 @@ const Navbar = () => {
       </Typography>
       </Box>
       <Search >
-      <InputBase sx={{width:'10%'}} placeholder="Search...">
+      <InputBase sx={{width:'100%'}} placeholder="Search...">
         
       </InputBase>
       {/* <SearchIcon sx={{color:'black'}}/> */}

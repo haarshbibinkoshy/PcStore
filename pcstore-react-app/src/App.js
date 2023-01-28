@@ -7,7 +7,7 @@ import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <Box sx={{backgroundColor:"#ececec",height:"100vh"}}>
+    <Box sx={{backgroundColor:"#ececec",height:"100%"}}>
 
     
 
