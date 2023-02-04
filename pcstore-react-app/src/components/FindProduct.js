@@ -7,10 +7,10 @@ const FindProduct = () => {
     const [value, setValue] = React.useState([20000, 55000]);
     const buttons = [
         <Button sx={{textTransform:'none'}} key="one">Hp</Button>,
-        <Button sx={{textTransform:'none'}} key="one">Dell</Button>,
-        <Button sx={{textTransform:'none'}} key="one">Apple</Button>,
-        <Button sx={{textTransform:'none'}} key="one">Lenovo</Button>,
-        <Button sx={{textTransform:'none'}} key="one">Acer</Button>,
+        <Button sx={{textTransform:'none'}} key="two">Dell</Button>,
+        <Button sx={{textTransform:'none'}} key="three">Apple</Button>,
+        <Button sx={{textTransform:'none'}} key="four">Lenovo</Button>,
+        <Button sx={{textTransform:'none'}} key="five">Acer</Button>,
         
       ];
 

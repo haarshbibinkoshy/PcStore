@@ -1,0 +1,6 @@
+.CategoryCard{
+    display: flex;
+    /* background-color: aqua; */
+    justify-content: center;
+    padding: 1rem;
+}

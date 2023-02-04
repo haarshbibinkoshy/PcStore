@@ -6,9 +6,10 @@ const Footer = () => {
     <Paper
       sx={{
         width: "100%",
-        position: "fixed",
-        bottom: 0,
+        // position: "fixed",
+        // bottom: 0,
         backgroundColor: "skyblue",
+        // marginTop:'auto'
       }}
     >
       Footer
