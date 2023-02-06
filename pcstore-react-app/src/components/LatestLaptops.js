@@ -66,7 +66,7 @@ const [items, setItems] = useState([])
 useEffect(() => {
   try {
     axios.get('http://localhost:4000/get-products?order=-1&page=1&limit=10&sortBy=createdAt').then((response) => {
-      console.log(`>>>>>>`, response.data);
+      // console.log(`>>>>>>`, response.data);
       setItems(response.data.data);
     });
     

@@ -16,6 +16,7 @@ import { Box } from "@mui/system";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./item.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const Items = (props) => {
   console.log(`props>>`, props);
@@ -91,6 +92,7 @@ const Items = (props) => {
       slidesToSlide: 1, // optional, default to 1.
     },
   };
+  const navigate = useNavigate()
   return (
 
     <Carousel responsive={responsive}>
@@ -98,10 +100,15 @@ const Items = (props) => {
       {props.items.length != 0 &&
         props.items.map((item, i) => {
           return (
+          
+
             
             <div key={i} className="item">
             
-              <Card
+              <Card onClick={(e)=>{
+                e.preventDefault();
+                navigate(`/itemPage/${item.name.replace(/[ ,\/]/g, "-")}`,{state:item._id})
+              }}
                 sx={{
                   boxShadow: 2,
                   display: "flex",
@@ -157,6 +164,7 @@ const Items = (props) => {
                 </CardContent>
               </Card>
             </div>
+           
           );
         })}
     </Carousel>
