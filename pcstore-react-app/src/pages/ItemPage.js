@@ -13,6 +13,7 @@ import PopularLaptops from "../components/PopularLaptops";
 import TopCategories from "../components/TopCategories/TopCategories";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import { display, height } from "@mui/system";
 
 const StyledBox = styled(Box)({
   // margin:"100rem",
@@ -25,6 +26,8 @@ const StyledBox = styled(Box)({
 const ItemPage = (props) => {
   const { state } = useLocation();
   const [item, setItem] = useState();
+  const [mainImage, setMainImage] = useState();
+
   console.log(state, `state<<<<`);
 
   useEffect(() => {
@@ -34,6 +37,7 @@ const ItemPage = (props) => {
         .then((response) => {
           console.log(response.data);
           setItem(response.data.data[0]);
+          setMainImage(response.data.data[0].images[0]);
         });
     } catch (error) {
       console.log(`err`, error);
@@ -57,10 +61,24 @@ const ItemPage = (props) => {
           GB/512 GB SSD/Windows 10/4 GB)
         </Typography>
         <Box sx={{ display: "flex", backgroundColor: "blanchedalmond" }}>
-          <Box sx={{ backgroundColor: "teal", width: "auto" }}>
-            images
-            <Box>
-              <ImageList
+          <Box sx={{ backgroundColor: "", width: "auto" }}>
+            
+            <Box component="img" sx={{
+          
+          // maxHeight: { xs: 233, md: 167 },
+          // maxWidth: { xs: 350, md: 250 },
+          objectFit: "contain",
+          backgroundColor:"white",
+          padding:"0.2rem",
+          width:"294"
+        }}
+        alt="The house from the offer."
+        src={mainImage}/>
+
+            
+            <Box sx={{ backgroundColor: "" ,display:"flex",justifyContent: "center",
+    alignItems: "end" }}>
+              {/* <ImageList
                 sx={{ backgroundColor: "blue" ,objectFit:'contain'}}
                 variant="quilted"
                 cols={4}
@@ -77,10 +95,35 @@ const ItemPage = (props) => {
                       <img   src={item} alt={item} loading="lazy" />
                     </ImageListItem>
                   ))}
-              </ImageList>
+              </ImageList> */}
+              <Box sx={{display:"flex"}}>
+
+              {item &&
+                  item.images.map((item) => (
+                    <Box onClick={(e)=>{
+                      setMainImage(item)
+                    }}
+        component="img"
+        sx={{
+          height: 33,
+          width: 35,
+          // maxHeight: { xs: 233, md: 167 },
+          // maxWidth: { xs: 350, md: 250 },
+          objectFit: "contain",
+          backgroundColor:"white",
+          padding:"0.3rem",
+          margin:"0.1rem"
+
+        }}
+        alt="The house from the offer."
+        src={item}
+      />
+
+                  ))}
+              </Box>
             </Box>
           </Box>
-          <Box sx={{ backgroundColor: "gold", width: "65%" }}>key specs</Box>
+          <Box sx={{ backgroundColor: "gold", width: "" }}>key specs</Box>
         </Box>
       </Box>
     </Box>
