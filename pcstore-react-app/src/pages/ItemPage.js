@@ -1,4 +1,4 @@
-import { Box, ListItemText, Stack, styled, Typography } from "@mui/material";
+import { Box, ListItemText, Stack, styled, Table, TableBody, TableContainer, TableRow, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -14,6 +14,8 @@ import TopCategories from "../components/TopCategories/TopCategories";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { display, height } from "@mui/system";
+import { TableCell } from "@material-ui/core";
+import TableList from "../components/TableList/TableList";
 
 const ListItem = styled(Typography)({
   // margin:"100rem",
@@ -35,10 +37,11 @@ const KeySpecBox = styled(Box)({
   // fontSize:"0.7rem",
   // fontFamily:"Arial",
   // lineHeight:"2.5rem",
-  backgroundColor:"white",
-  // display:"flex"
+  // backgroundColor:"white",
+  display:"flex",
+  flexDirection:"column",
   flex:1,
-  borderRight:"1px solid #d6d6d6",
+  // borderRight:"1px solid #d6d6d6",
   // borderBottom: {
   //   borderBottom: '1px solid ',
   //   '&:nth-last-child(1)': {
@@ -47,8 +50,41 @@ const KeySpecBox = styled(Box)({
   //  },
   padding:"0.5rem",
   '&:not(:last-child)': {
-    borderRight: '1px solid black',
+    borderRight: '1px solid #d6d6d6',
   },
+});
+const KeySpecMainBox = styled(Box)({
+  // margin:"100rem",
+  // padding:"1rem",
+  // backgroundColor:"blue",
+  // marginBottom: "1rem",
+  // height:"01rem"
+  // fontSize:"0.7rem",
+  // fontFamily:"Arial",
+  // lineHeight:"2.5rem",
+  backgroundColor:"white",
+  display:"flex",
+  flexDirection:"column",
+  flex:1,
+  // borderRight:"1px solid #d6d6d6",
+  // borderBottom: {
+  //   borderBottom: '1px solid ',
+  //   '&:nth-last-child(1)': {
+  //     borderBottom: 'none'
+  //  }
+  //  },
+  padding:"0.5rem",
+  '&:not(:last-child)': {
+    borderRight: '1px solid #d6d6d6',
+  },
+});
+const Container = styled(Box)({
+
+  backgroundColor:"white",
+  padding:"0.5rem",
+//  display: "flex",
+ justifyContent:"center",
+ textAlign:"left",
 });
 
 const ItemPage = (props) => {
@@ -93,11 +129,11 @@ const ItemPage = (props) => {
         <Box
           sx={{
             display: "flex",
-            backgroundColor: "blanchedalmond",
+            backgroundColor: "",
             flexWrap: "wrap",
           }}
         >
-          <Box sx={{ backgroundColor: "blue", padding: "1rem" }}>
+          <Box sx={{ backgroundColor: "", padding: "1rem" }}>
             <Box
               component="img"
               sx={{
@@ -164,17 +200,17 @@ const ItemPage = (props) => {
               </Box>
             </Box>
           </Box>
-          <Box sx={{ backgroundColor: "gold", flex: "1"  ,padding: "1rem" }}>
+          <Box sx={{ backgroundColor: "", flex: "1"  ,padding: "1rem" }}>
           <Box sx={{"padding":"1rem 0rem"}}>
                      
           <Typography sx={{fontSize:"1rem",fontWeight:"bold"}}>Rs.{item&&item.price} <Typography>(onwards)</Typography></Typography>
           </Box>
             <Typography sx={{fontSize:"",fontWeight:"bold"}}>key specs</Typography>
-            <Box sx={{display:"flex" ,justifyContent:"space-evenly"}}>
+            <Box sx={{display:"flex" ,flexWrap:"wrap" ,justifyContent:"space-evenly"}}>
 
-            
+            {/* <KeySpecMainBox> */}
             <KeySpecBox>
-              Performance
+              <Typography >Performance</Typography>
               
               {item &&
                 Object.entries(item.performance).map(([key, val]) => {
@@ -185,7 +221,8 @@ const ItemPage = (props) => {
                 }
                 
             </KeySpecBox>
-            <KeySpecBox>Design
+            <KeySpecBox>
+            <Typography>Design</Typography>
             {/* <ListItem>asd</ListItem> */}
             {item&&
               <ListItem>{item?.displayDetails?.displaySize}</ListItem>
@@ -197,10 +234,12 @@ const ItemPage = (props) => {
               <ListItem >{item?.generalInformation.dimensions}</ListItem>
                 }
             </KeySpecBox>
-            <KeySpecBox>Storage
+            <KeySpecBox>
+            <Typography>Storage</Typography>
             {<ListItem>{item?.storage?.ssdCapacity}</ListItem>}
             </KeySpecBox>
-            <KeySpecBox>Battery
+            <KeySpecBox>
+            <Typography> Battery</Typography>
             {item &&
                 Object.entries(item.battery).map(([key, val]) => {
                   return val && <ListItem>{val}</ListItem>;
@@ -213,7 +252,73 @@ const ItemPage = (props) => {
         
       </Box>
       <Box sx={{ backgroundColor: "#fff", paddingTop: "1rem",marginTop:"1rem", height: "auto" }}>
-                
+           <Container >
+            <Typography>general Information</Typography>
+  
+            {item?.generalInformation &&<TableList list={item.generalInformation} />}
+
+           </Container>     
+           <Container>
+            <Typography>Display Details</Typography>
+  
+            {item?.displayDetails &&<TableList list={item.displayDetails} />}
+
+           </Container>     
+           <Container>
+            <Typography>Performance</Typography>
+  
+            {item?.performance &&<TableList list={item.performance} />}
+
+           </Container>     
+           <Container>
+            <Typography>Memory</Typography>
+  
+            {item?.memory &&<TableList list={item.memory} />}
+
+           </Container>     
+           <Container>
+            <Typography>Storage</Typography>
+  
+            {item?.storage &&<TableList list={item.storage} />}
+
+           </Container>     
+           <Container>
+            <Typography>Battery</Typography>
+  
+            {item?.battery &&<TableList list={item.battery} />}
+
+           </Container>     
+           <Container>
+            <Typography>Networking</Typography>
+  
+            {item?.networking &&<TableList list={item.networking} />}
+
+           </Container>     
+           <Container>
+            <Typography>Ports</Typography>
+  
+            {item?.ports &&<TableList list={item.ports} />}
+
+           </Container>     
+           <Container>
+            <Typography>Multimedia</Typography>
+  
+            {item?.multimedia &&<TableList list={item.multimedia} />}
+
+           </Container>     
+           <Container>
+            <Typography>Peripherals</Typography>
+  
+            {item?.peripherals &&<TableList list={item.peripherals} />}
+
+           </Container>     
+           <Container>
+            <Typography>Others</Typography>
+  
+            {item?.others &&<TableList list={item.others} />}
+
+           </Container>     
+               
       </Box>
     </Box>
   );
