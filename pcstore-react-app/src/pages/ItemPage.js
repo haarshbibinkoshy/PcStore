@@ -103,6 +103,7 @@ const ItemPage = (props) => {
           setItem(response.data.data[0]);
           setMainImage(response.data.data[0].images[0]);
         });
+        window.scrollTo(0, 0)
     } catch (error) {
       console.log(`err`, error);
     }
