@@ -266,7 +266,7 @@ function SimpleTable(props) {
                                         id="combo-box-demo"
                                         options={options}
                                         sx={{ width: 300 }}
-                                        renderInput={(params) => <TextField {...params} onChange={handleSearch1} onKeyDown={submitSearch1} label="Movie" />}
+                                        renderInput={(params) => <TextField {...params} onChange={handleSearch1} onKeyDown={submitSearch1} label="Product" />}
                                         onChange={handleAutocomplete1}
                                         onKeyDown={submitSearch1}
                                     ></Autocomplete>)
@@ -288,7 +288,7 @@ function SimpleTable(props) {
                                             id="combo-box-demo"
                                             options={options}
                                             sx={{ width: 300 }}
-                                            renderInput={(params) => <TextField {...params} onChange={handleSearch2} onKeyDown={submitSearch2} label="Movie" />}
+                                            renderInput={(params) => <TextField {...params} onChange={handleSearch2} onKeyDown={submitSearch2} label="Product" />}
                                             onChange={handleAutocomplete2}
                                             onKeyDown={submitSearch2}
                                         ></Autocomplete>
