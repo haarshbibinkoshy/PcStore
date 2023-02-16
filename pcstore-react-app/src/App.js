@@ -7,6 +7,7 @@ import Slider from "react-slick"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import ItemPage from "./pages/ItemPage"
 import ComparePage from "./pages/ComparePage"
+import ItemsListPage from "./pages/ItemsListPage"
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/itemPage/:id" element={<ItemPage />} />
             <Route path="/comparePage" element={<ComparePage />} />
+            <Route path="/itemsPage" element={<ItemsListPage />} />
           </Routes>
         </Router>
         {/* <HomePage/> */}
