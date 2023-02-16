@@ -15,17 +15,20 @@ function App() {
     <Box sx={{
       backgroundColor: "#ececec",
       // backgroundColor:"black",
-      height: "100%"
+      height: "100%",
+      // width: "100%",
     }}>
 
 
 
-      <Navbar />
+      
       <Box sx={{
-        display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center',
+        display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+         alignItems: 'center',
         // minHeight:'100vh'
       }}>
         <Router>
+        <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/itemPage/:id" element={<ItemPage />} />
