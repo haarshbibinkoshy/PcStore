@@ -86,6 +86,13 @@ const Container = styled(Box)({
  justifyContent:"center",
  textAlign:"left",
 });
+const TypographyStyle = styled(Typography)({
+
+color:"#00bfff",
+fontSize:"1.3rem",
+});
+
+
 
 const ItemPage = (props) => {
   const { state } = useLocation();
@@ -121,8 +128,8 @@ const ItemPage = (props) => {
   return (
     <Box sx={{ width: "75%" }}>
    
-      <Box sx={{ backgroundColor: "#fff", paddingTop: "1rem",marginTop:"1rem", height: "auto" }}>
-        <Typography>
+      <Box sx={{ backgroundColor: "#fff", padding: "1rem",marginTop:"1rem", height: "auto" }}>
+        <Typography sx={{ fontWeight: "bold", fontSize: "1.2rem" }}>
           {/* HP Pavilion 15-ec2004AX (3E3R5PA) Laptop (AMD Hexa Core Ryzen 5/8
           GB/512 GB SSD/Windows 10/4 GB) */}
           {item&&item.name}
@@ -145,6 +152,7 @@ const ItemPage = (props) => {
                 // padding: "0.2rem",
                 maxWidth: "100%",
                 minWidth: "1rem",
+                height:"14rem"
               }}
               alt="The house from the offer."
               src={mainImage}
@@ -204,9 +212,9 @@ const ItemPage = (props) => {
           <Box sx={{ backgroundColor: "", flex: "1"  ,padding: "1rem" }}>
           <Box sx={{"padding":"1rem 0rem"}}>
                      
-          <Typography sx={{fontSize:"1rem",fontWeight:"bold"}}>Rs.{item&&item.price} <Typography>(onwards)</Typography></Typography>
+          <Typography sx={{fontSize: "1.2rem",fontWeight:"bold"}}>Rs.{item&&item.price} <Typography>(onwards)</Typography></Typography>
           </Box>
-            <Typography sx={{fontSize:"",fontWeight:"bold"}}>key specs</Typography>
+            <Typography sx={{fontSize:"1.1rem",fontWeight:"bold"}}>key specs</Typography>
             <Box sx={{display:"flex" ,flexWrap:"wrap" ,justifyContent:"space-evenly"}}>
 
             {/* <KeySpecMainBox> */}
@@ -254,67 +262,67 @@ const ItemPage = (props) => {
       </Box>
       <Box sx={{ backgroundColor: "#fff", paddingTop: "1rem",marginTop:"1rem", height: "auto" }}>
            <Container >
-            <Typography>general Information</Typography>
+            <TypographyStyle>General Information</TypographyStyle>
   
             {item?.generalInformation &&<TableList list={item.generalInformation} />}
 
            </Container>     
            <Container>
-            <Typography>Display Details</Typography>
+            <TypographyStyle>Display Details</TypographyStyle>
   
             {item?.displayDetails &&<TableList list={item.displayDetails} />}
 
            </Container>     
            <Container>
-            <Typography>Performance</Typography>
+            <TypographyStyle>Performance</TypographyStyle>
   
             {item?.performance &&<TableList list={item.performance} />}
 
            </Container>     
            <Container>
-            <Typography>Memory</Typography>
+            <TypographyStyle>Memory</TypographyStyle>
   
             {item?.memory &&<TableList list={item.memory} />}
 
            </Container>     
            <Container>
-            <Typography>Storage</Typography>
+            <TypographyStyle>Storage</TypographyStyle>
   
             {item?.storage &&<TableList list={item.storage} />}
 
            </Container>     
            <Container>
-            <Typography>Battery</Typography>
+            <TypographyStyle>Battery</TypographyStyle>
   
             {item?.battery &&<TableList list={item.battery} />}
 
            </Container>     
            <Container>
-            <Typography>Networking</Typography>
+            <TypographyStyle>Networking</TypographyStyle>
   
             {item?.networking &&<TableList list={item.networking} />}
 
            </Container>     
            <Container>
-            <Typography>Ports</Typography>
+            <TypographyStyle>Ports</TypographyStyle>
   
             {item?.ports &&<TableList list={item.ports} />}
 
            </Container>     
            <Container>
-            <Typography>Multimedia</Typography>
+            <TypographyStyle>Multimedia</TypographyStyle>
   
             {item?.multimedia &&<TableList list={item.multimedia} />}
 
            </Container>     
            <Container>
-            <Typography>Peripherals</Typography>
+            <TypographyStyle>Peripherals</TypographyStyle>
   
             {item?.peripherals &&<TableList list={item.peripherals} />}
 
            </Container>     
            <Container>
-            <Typography>Others</Typography>
+            <TypographyStyle>Others</TypographyStyle>
   
             {item?.others &&<TableList list={item.others} />}
 

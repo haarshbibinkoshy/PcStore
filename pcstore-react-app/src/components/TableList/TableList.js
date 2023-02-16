@@ -9,12 +9,15 @@ const TableList = ({list}) => {
     <Table>
       <TableBody>
       {Object.entries(list).map(([key, value]) =>{
-        return(
+        return value&&(
             <TableRow key={key} >
-          <TableCell >
-            <Typography sx={{fontWeight: "bold"}}>{key}</Typography>
+            
+          <TableCell align="left" sx={{width:"20rem"}} >
+
+            <Typography sx={{fontWeight: ""}}>{key}</Typography>
+            {/* key */}
           </TableCell>
-          <TableCell>
+          <TableCell align="left">
             {value}
           </TableCell>
         </TableRow>
