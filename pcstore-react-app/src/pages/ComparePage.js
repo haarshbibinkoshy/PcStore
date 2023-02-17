@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell'
 import Typography from '@mui/material/Typography'
 import TableHead from '@material-ui/core/TableHead'
 import Autocomplete from '@mui/material/Autocomplete'
-
+import { Box } from '@material-ui/core'
 import Select from '@mui/material/Select'
 // or
 
@@ -25,9 +25,13 @@ import data from "./data"
 import { useEffect } from 'react'
 const styles = theme => ({
     root: {
-        width: '100%',
+        // width: '100%',
+        // marginTop: theme.spacing.unit * 3,
+        // overflowX: 'auto',
+        display: 'flex',
         marginTop: theme.spacing.unit * 3,
         overflowX: 'auto',
+        // overflowX: 'hide',
     },
     table: {
         minWidth: 700,
@@ -226,11 +230,12 @@ function SimpleTable(props) {
     // console.log("first?", first)
     // console.log("second?", second)
     return (
-        <Paper className={classes.root}>
+        <div>
+            <Box sx={{ width: "75%", overflow: "auto" }}>
+                <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
+                    <Table className={classes.table} sx={{ backgroundColor: "#fff", padding: "1rem", marginTop: "1rem", height: "auto" }}>
 
-            <Table className={classes.table}>
-
-                {/* <TableHead>
+                        {/* <TableHead>
                     <TableRow>
 
                         <TableCell>Dessert (100g serving)</TableCell>
@@ -240,78 +245,86 @@ function SimpleTable(props) {
                         <TableCell align="right">Protein (g)</TableCell>
                     </TableRow>
                 </TableHead> */}
-                <TableBody>
-                    {rows.map(row => (
-                        <TableRow key={row.id}>
-                            {/* <TextField id="outlined-basic" label="Outlined" variant="outlined" >ads</TextField> */}
-                            <TableCell align="left">
+                        <TableBody
+                        // sx={{
+                        //     display: "flex",
+                        //     backgroundColor: "",
+                        //     flexWrap: "wrap",
+                        // }}
+                        >
+                            {rows.map(row => (
+                                <TableRow key={row.id}>
+                                    {/* <TextField id="outlined-basic" label="Outlined" variant="outlined" >ads</TextField> */}
+                                    <TableCell align="left">
 
-                            </TableCell>
-                            <TableCell align="left">{
+                                    </TableCell>
+                                    <TableCell align="left">{
 
-                                row.first == "Search" ? (<TextField id="outlined-basic" label="Outlined" variant="outlined" >
+                                        row.first == "Search" ? (<TextField id="outlined-basic" label="Outlined" variant="outlined" >
 
 
 
-                                </TextField>) : headerArray.includes(row.first) ?
-                                    <Typography style={{ color: '#00BFFF' }} variant="h5">{row.first}</Typography>
-                                    : row.first}
-                            </TableCell>
-                            <TableCell align="left">{
-                                row.second == "Search" ? (
+                                        </TextField>) : headerArray.includes(row.first) ?
+                                            <Typography style={{ color: '#00BFFF' }} variant="h5">{row.first}</Typography>
+                                            : row.first}
+                                    </TableCell>
+                                    <TableCell align="left">{
+                                        row.second == "Search" ? (
 
-                                    <Autocomplete
+                                            <Autocomplete
 
-                                        disablePortal
-                                        id="combo-box-demo"
-                                        options={options}
-                                        sx={{ width: 300 }}
-                                        renderInput={(params) => <TextField {...params} onChange={handleSearch1} onKeyDown={submitSearch1} label="Product" />}
-                                        onChange={handleAutocomplete1}
-                                        onKeyDown={submitSearch1}
-                                    ></Autocomplete>)
+                                                disablePortal
+                                                id="combo-box-demo"
+                                                options={options}
+                                                sx={{ width: 300 }}
+                                                renderInput={(params) => <TextField {...params} onChange={handleSearch1} onKeyDown={submitSearch1} label="Product" />}
+                                                onChange={handleAutocomplete1}
+                                                onKeyDown={submitSearch1}
+                                            ></Autocomplete>)
 
-                                    : comp(row.second) ? <img
-                                        className='images'
-                                        height={200}
-                                        width={200}
-                                        src={row.second}
-                                    /> : row.second
+                                            : comp(row.second) ? <img
+                                                className='images'
+                                                height={200}
+                                                width={200}
+                                                src={row.second}
+                                            /> : row.second
 
-                            }</TableCell>
-                            <TableCell align="left">{
-                                row.third == "Search" ?
-                                    (
-                                        <Autocomplete
+                                    }</TableCell>
+                                    <TableCell align="left">{
+                                        row.third == "Search" ?
+                                            (
+                                                <Autocomplete
 
-                                            disablePortal
-                                            id="combo-box-demo"
-                                            options={options}
-                                            sx={{ width: 300 }}
-                                            renderInput={(params) => <TextField {...params} onChange={handleSearch2} onKeyDown={submitSearch2} label="Product" />}
-                                            onChange={handleAutocomplete2}
-                                            onKeyDown={submitSearch2}
-                                        ></Autocomplete>
-                                    ) : comp(row.third) ? <img
-                                        className='images'
-                                        height={200}
-                                        width={200}
-                                        src={row.third}
-                                    /> : row.third
-                            }</TableCell>
-                            <TableCell align="left">{
-                                comp(row.fourth) ? <img
-                                    className='images'
-                                    height={200}
-                                    width={200}
-                                    src={row.fourth}
-                                /> : row.fourth
-                            }</TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </Paper >
+                                                    disablePortal
+                                                    id="combo-box-demo"
+                                                    options={options}
+                                                    sx={{ width: 300 }}
+                                                    renderInput={(params) => <TextField {...params} onChange={handleSearch2} onKeyDown={submitSearch2} label="Product" />}
+                                                    onChange={handleAutocomplete2}
+                                                    onKeyDown={submitSearch2}
+                                                ></Autocomplete>
+                                            ) : comp(row.third) ? <img
+                                                className='images'
+                                                height={200}
+                                                width={200}
+                                                src={row.third}
+                                            /> : row.third
+                                    }</TableCell>
+                                    <TableCell align="left">{
+                                        comp(row.fourth) ? <img
+                                            className='images'
+                                            height={200}
+                                            width={200}
+                                            src={row.fourth}
+                                        /> : row.fourth
+                                    }</TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </Box >
+            </Box >
+        </div>
     )
 }
 
