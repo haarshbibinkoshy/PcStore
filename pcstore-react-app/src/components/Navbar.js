@@ -10,8 +10,9 @@ import {
 import { height, width } from "@mui/system";
 import SearchIcon from "@mui/icons-material/Search";
 // import { red } from '@mui/material/colors'
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -32,6 +33,30 @@ const Search = styled("div")(({ theme }) => ({
 }));
 
 const Navbar = () => {
+
+  const [search, setSearch] = useState('');
+  const navigate = useNavigate()
+
+  function handleSearchValue(e) {
+    e.preventDefault();
+    console.log(e.target.value);
+    setSearch(e.target.value);
+  }
+  function handleSearch(e) {
+    e.preventDefault();
+  //  console.log(`target>>>`,search);
+   navigate(`/itemsPage/search-product?searchBy=name&value=${search}`,{state:""})
+  //  try {
+  //   axios.get('http://localhost:4000/get-products?filterBy=category&filterValue=Gaming laptop&order=-1&page=1&limit=10').then((response) => {
+  //     // console.log(response.data);
+  //     setItems(response.data.data);
+  //   });
+    
+  // } catch (error) {
+  //   console.log(`err`,error);
+  // }
+  
+  }
   return (
     <Box sx={{ width: "100%" }}>
       <AppBar
@@ -50,11 +75,20 @@ const Navbar = () => {
             <Typography variant="h6">logo</Typography>
           </Link>
           </Box>
-          <Search>
+          <Search sx={{display: "flex",}}>
             <InputBase
               sx={{ width: "100%" }}
               placeholder="Search..."
+              onChange={handleSearchValue}
+              // onSubmit={handleSearch}
             ></InputBase>
+            <Link to={`/itemsPage/search-product?searchBy=name&value=${search}`}  style={{ textDecoration: "none",color:"#fff" }}>
+
+            <Button 
+            // onClick={handleSearch}
+            // href={`/itemsPage/search-product?searchBy=name&value=${search}`}
+            >search</Button>
+            </Link>
             {/* <SearchIcon sx={{color:'black'}}/> */}
           </Search>
           <Box sx={{}}>

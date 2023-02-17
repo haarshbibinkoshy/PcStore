@@ -1,9 +1,10 @@
 import { Button, ButtonGroup, Slider, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const FindProduct = () => {
-    const [state, setState] = useState(0)
+    // const [state, setState] = useState(0)
     const [value, setValue] = React.useState([20000, 55000]);
     const buttons = [
         <Button sx={{textTransform:'none'}} key="one">Hp</Button>,
@@ -37,7 +38,13 @@ const FindProduct = () => {
       />
             <TextField value={value[0]} onChange={(e)=>{e.preventDefault();setValue([e.target.value,value[1]])}} id="outlined-basic" label="From" variant="outlined" />
             <TextField value={value[1]} onChange={(e)=>{e.preventDefault();setValue([value[0],e.target.value])}} id="outlined-basic" label="To" variant="outlined" />
-            <Button variant='contained'>find</Button>
+            <Link to={`/itemsPage/get-products?filterBy=price&filterValue=${value[0]}|${value[1]}&order=1`}  style={{ textDecoration: "none",color:"#fff" }} >
+            {/* <Link to={`/itemsPage/get-products?filterBy=price&filterValue=${value[0]}|${value[1]}&order=1&page=1&limit=3`}  style={{ textDecoration: "none",color:"#fff" }} > */}
+            <Button variant='contained' sx={{width:'100%',textDecoration:"none"}}>
+              
+            find
+            </Button>
+            </Link>
         </Box>
         <Box>
             <Typography variant='subtitle1'>By Brand</Typography>

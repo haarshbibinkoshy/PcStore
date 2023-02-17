@@ -34,6 +34,8 @@ function App() {
             <Route path="/itemPage/:id" element={<ItemPage />} />
             <Route path="/comparePage" element={<ComparePage />} />
             <Route path="/itemsPage" element={<ItemsListPage />} />
+            <Route path="/itemsPage/get-products" element={<ItemsListPage />} />
+            <Route path="/itemsPage/search-product" element={<ItemsListPage />} />
           </Routes>
         </Router>
         {/* <HomePage/> */}

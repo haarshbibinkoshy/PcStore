@@ -7,56 +7,60 @@ import data from "./data";
 
 import CircularProgress from "@mui/material/CircularProgress";
 import styled from "@emotion/styled";
+import { useLocation } from "react-router-dom";
 
 const ItemsListPage = () => {
   const ListItem = styled(Typography)({
-    // margin:"100rem",
-    // padding:"10rem",
-    // backgroundColor:"blue",
-    // marginBottom: "1rem",
-    // height:"01rem"
+
     fontSize: "0.7rem",
-    // fontFamily:"Arial",
-    // lineHeight:"2.5rem",
-    // backgroundColor:"white"
+ 
   });
   const KeySpecBox = styled(Box)({
-    // margin:"100rem",
-    // padding:"1rem",
-    // backgroundColor:"blue",
-    // marginBottom: "1rem",
-    // height:"01rem"
-    // fontSize:"0.7rem",
-    // fontFamily:"Arial",
-    // lineHeight:"2.5rem",
-    // backgroundColor:"white",
+
     display: "flex",
     flexDirection: "column",
     flex: 1,
-    // borderRight:"1px solid #d6d6d6",
-    // borderBottom: {
-    //   borderBottom: '1px solid ',
-    //   '&:nth-last-child(1)': {
-    //     borderBottom: 'none'
-    //  }
-    //  },
     padding: "0.5rem",
     "&:not(:last-child)": {
       borderRight: "1px solid #d6d6d6",
     },
   });
   const [items, setItems] = useState("");
+  // const [searchParams, setSearchParams] = useState("");
+  // const [currentUrl, setcurrentUrl] = useState("");
+  
+  const location = useLocation();
+  // const searchParams = new URLSearchParams(location.search);
+
   useEffect(() => {
     try {
-      // axios.get('http://localhost:4000/get-products?filterBy=category&filterValue=Gaming laptop&order=-1&page=1&limit=10').then((response) => {
-      //   // console.log(response.data);
-      //   setItems(response.data.data);
-      // });
-      setItems(data);
+    //  setItems("")
+    console.log(`locat>>>`,location);
+    // setSearchParams(location.search);
+    // setcurrentUrl(location.pathname)
+      let url='http://localhost:4000/'
+      // let currentUrl=window.location.href;
+      // setcurrentUrl(window.location.href)
+      // setSearchParams(window.location.search)
+      // let searchParams=window.location.search;
+      if (location.pathname.includes('search-product')) {
+        url+=`search-product${location.search}`
+      }else if(location.pathname.includes('get-products')){
+        url+=`get-products${location.search}`
+      }
+// console.log(`check>>>`,window.location);
+
+ axios.get(url).then((response) => {
+        // console.log(response.data);
+        setItems(response.data.data);
+      });
+console.log(`url>>`,url);
+      // setItems(data);
     } catch (error) {
       console.log(`err`, error);
     }
-  }, []);
+  }, [location]);
+
   console.log(`items>>`, items);
   return (
     <Box
