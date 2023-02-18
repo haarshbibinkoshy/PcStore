@@ -6,11 +6,19 @@ import LaptopIcon from '@mui/icons-material/Laptop';
 import DevicesOtherIcon from '@mui/icons-material/DevicesOther';
 import Carousel from 'react-multi-carousel';
 import "./TopCategories.css"
+import { Link, useNavigate } from 'react-router-dom';
 
 const StyledCard=styled(Card)({
    flexShrink:0,flexBasis:'auto', width: '15rem' ,display:'flex', flexDirection: 'column',justifyContent: 'center',alignItems: 'center'
 })
 const TopCategories = () => {
+  const navigate = useNavigate()
+  function handleClick(e) {
+    console.log(e.target.value);
+    //http://localhost:4000/get-products?filterBy=category&filterValue=Gaming laptop&order=-1&page=1&limit=10
+    // navigate(`/itemsPage/get-products?filterBy=category&filterValue=Gaming laptop&order=-1&page=1&limit=10`)
+    // navigate(`/itemsPage/search-product?searchBy=brand&value=${e.target.value}`,{state:""})
+  }
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -30,7 +38,11 @@ const TopCategories = () => {
   };
   const StyledCard=styled(Card)({
     flexShrink:0,flexBasis:'auto', width: '15rem' ,display:'flex', flexDirection: 'column',justifyContent: 'center',alignItems: 'center'
- })
+    ,border: "1px solid white",
+    "&:hover": {
+      border: "1px  solid #FFA500",
+      cursor: "pointer",
+    },})
   return (
     <Box sx={{backgroundColor:"#fff",paddingTop:'1rem'}}>
             <Typography sx={{paddingLeft:'1rem'}} variant='h5'>Top Categories</Typography>
@@ -38,21 +50,24 @@ const TopCategories = () => {
 
             
     <Carousel  responsive={responsive}>
-<div className="CategoryCard">
-<StyledCard>
+    
+      
+  
+<div  className="CategoryCard">
+<Link to="/itemsPage/get-products?filterBy=category&filterValue=Gaming laptop&order=1" style={{textDecoration: "none"}}>
+<StyledCard  >
     <SportsEsportsIcon sx={{fontSize: 50}}/>
       <CardContent>
-        <Typography gutterBottom variant="subtitle1" component="div">
-          Gaming Laptops
+        <Typography  gutterBottom variant="subtitle1" component="div">
+          Gaming Laptops 
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography> */}
+     
       </CardContent>
     </StyledCard>
+    </Link>
 </div>
 <div className="CategoryCard">
+<Link to="/itemsPage/get-products?filterBy=category&filterValue=Laptop&order=1" style={{textDecoration: "none"}}>
 <StyledCard>
     {/* <SportsEsportsIcon sx={{fontSize: 50}}/> */}
     <LaptopIcon sx={{fontSize: 50}}/>
@@ -60,12 +75,10 @@ const TopCategories = () => {
         <Typography gutterBottom variant="subtitle1" component="div">
           Laptops
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography> */}
+       
       </CardContent>
     </StyledCard>
+    </Link>
 </div>
 <div className="CategoryCard">
 <StyledCard>
@@ -75,10 +88,7 @@ const TopCategories = () => {
         <Typography gutterBottom variant="subtitle1" component="div">
           Accessories
         </Typography>
-        {/* <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography> */}
+      
       </CardContent>
     </StyledCard>
 </div>

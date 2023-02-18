@@ -1,7 +1,7 @@
 import { Button, ButtonGroup, Slider, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const FindProduct = () => {
     // const [state, setState] = useState(0)
@@ -18,6 +18,11 @@ const FindProduct = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const navigate = useNavigate()
+  function handleClick(e) {
+    console.log(e.target.value);
+    navigate(`/itemsPage/search-product?searchBy=brand&value=${e.target.value}`,{state:""})
+  }
   return (
     <Box sx={{}}>
     <Box sx={{width:"100%",display: "flex",alignItems:"center",justifyContent:"center", }}>
@@ -63,7 +68,12 @@ const FindProduct = () => {
         aria-label="vertical contained button group"
         variant="text"
       >
-        {buttons}
+        {/* {buttons} */}
+        <Button onClick={handleClick} value="Hp" sx={{textTransform:'none'}}   key="one">Hp</Button>
+        <Button onClick={handleClick} value="Dell" sx={{textTransform:'none'}} key="two">Dell</Button>
+        <Button onClick={handleClick} value="Apple" sx={{textTransform:'none'}} key="three">Apple</Button>
+        <Button onClick={handleClick} value="Lenovo" sx={{textTransform:'none'}} key="four">Lenovo</Button>
+        <Button onClick={handleClick} value="Acer" sx={{textTransform:'none'}} key="five">Acer</Button>
       </ButtonGroup>
     </Box>
         </Box>
