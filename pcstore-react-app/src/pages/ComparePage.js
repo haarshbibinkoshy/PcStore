@@ -230,8 +230,8 @@ function SimpleTable(props) {
     // console.log("first?", first)
     // console.log("second?", second)
     return (
-        <div>
-            <Box sx={{ width: "75%", overflow: "auto" }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+            <Box sx={{ width: "75%", overflow: "auto", backgroundColor: "#fff", display: "flex", justifyContent: "center" }}>
                 <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
                     <Table className={classes.table} sx={{ backgroundColor: "#fff", padding: "1rem", marginTop: "1rem", height: "auto" }}>
 
