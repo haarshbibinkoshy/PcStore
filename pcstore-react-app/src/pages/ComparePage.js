@@ -163,7 +163,7 @@ function SimpleTable(props) {
 
             if (e.code == "Enter") {
                 console.log("search1", search1)
-                const res = await axios.get(`${baseUrl}/search-product?searchBy=name&value=${search1}`)
+                const res = await axios.get(`search-product?searchBy=name&value=${search1}`)
                 console.log("data from searc api1", res)
                 if (res.status == 200) {
                     // setfirst(res?.data?.data[0])
@@ -191,7 +191,7 @@ function SimpleTable(props) {
 
             if (e.code == "Enter") {
                 console.log("search2", search2)
-                const res = await axios.get(`${baseUrl}/search-product?searchBy=name&value=${search2}`)
+                const res = await axios.get(`search-product?searchBy=name&value=${search2}`)
                 console.log("data from searc api2", res)
                 if (res.status == 200) {
                     // setsecond(res?.data?.data[0])

@@ -1,20 +1,20 @@
-import { CardMedia, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import Items from "../components/Items/Items";
-import data from "./data";
+import { CardMedia, Typography } from "@mui/material"
+import { Box } from "@mui/system"
+import axios from "axios"
+import React, { useEffect, useState } from "react"
+import Items from "../components/Items/Items"
+import data from "./data"
 
-import CircularProgress from "@mui/material/CircularProgress";
-import styled from "@emotion/styled";
-import { useLocation, useNavigate } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress"
+import styled from "@emotion/styled"
+import { useLocation, useNavigate } from "react-router-dom"
 
 
 const ItemsListPage = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const ListItem = styled(Typography)({
     fontSize: "0.7rem",
-  });
+  })
   const KeySpecBox = styled(Box)({
     display: "flex",
     flexDirection: "column",
@@ -23,44 +23,44 @@ const ItemsListPage = () => {
     "&:not(:last-child)": {
       borderRight: "1px solid #d6d6d6",
     },
-  });
-  const [items, setItems] = useState("");
+  })
+  const [items, setItems] = useState("")
   // const [searchParams, setSearchParams] = useState("");
   // const [currentUrl, setcurrentUrl] = useState("");
 
-  const location = useLocation();
+  const location = useLocation()
   // const searchParams = new URLSearchParams(location.search);
 
   useEffect(() => {
     try {
-       setItems("")
-      console.log(`locat>>>`, location);
+      setItems("")
+      console.log(`locat>>>`, location)
       // setSearchParams(location.search);
       // setcurrentUrl(location.pathname)
-      let url = "http://localhost:4000/";
+      let url = ""
       // let currentUrl=window.location.href;
       // setcurrentUrl(window.location.href)
       // setSearchParams(window.location.search)
       // let searchParams=window.location.search;
       if (location.pathname.includes("search-product")) {
-        url += `search-product${location.search}`;
+        url += `search-product${location.search}`
       } else if (location.pathname.includes("get-products")) {
-        url += `get-products${location.search}`;
+        url += `get-products${location.search}`
       }
       // console.log(`check>>>`,window.location);
 
       axios.get(url).then((response) => {
         // console.log(response.data);
-        setItems(response.data.data);
-      });
-      console.log(`url>>`, url);
+        setItems(response.data.data)
+      })
+      console.log(`url>>`, url)
       // setItems(data);
     } catch (error) {
-      console.log(`err`, error);
+      console.log(`err`, error)
     }
-  }, [location]);
+  }, [location])
 
-  console.log(`items>>`, items);
+  console.log(`items>>`, items)
   return (
     <Box
       sx={{
@@ -81,25 +81,25 @@ const ItemsListPage = () => {
     <Box></Box>
   )
 })} */}
-{items.length==0&&<Box
-sx={{
-                backgroundColor: "#fff",
-                display: "flex",
-                flexWrap: "wrap",
-                marginBottom: "1rem",
-                padding: "1rem",
-               justifyContent: "center",
-              }}
-><CircularProgress/></Box> }
+      {items.length == 0 && <Box
+        sx={{
+          backgroundColor: "#fff",
+          display: "flex",
+          flexWrap: "wrap",
+          marginBottom: "1rem",
+          padding: "1rem",
+          justifyContent: "center",
+        }}
+      ><CircularProgress /></Box>}
       {items &&
         items.map((item, index) => {
           return (
             <Box
               onClick={(e) => {
-                e.preventDefault();
+                e.preventDefault()
                 navigate(`/itemPage/${item.name.replace(/[ ,\/]/g, "-")}`, {
                   state: item._id,
-                });
+                })
               }}
               sx={{
                 backgroundColor: "#fff",
@@ -167,7 +167,7 @@ sx={{
 
                     {item &&
                       Object.entries(item.performance).map(([key, val]) => {
-                        return val && <ListItem>{val}</ListItem>;
+                        return val && <ListItem>{val}</ListItem>
                       })}
                     {item && (
                       <ListItem>
@@ -199,16 +199,16 @@ sx={{
                     <Typography> Battery</Typography>
                     {item &&
                       Object.entries(item.battery).map(([key, val]) => {
-                        return val && <ListItem>{val}</ListItem>;
+                        return val && <ListItem>{val}</ListItem>
                       })}
                   </KeySpecBox>
                 </Box>
               </Box>
             </Box>
-          );
+          )
         })}
     </Box>
-  );
-};
+  )
+}
 
-export default ItemsListPage;
+export default ItemsListPage
