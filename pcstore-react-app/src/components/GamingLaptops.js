@@ -65,7 +65,7 @@ const GamingLaptops = () => {
 
   useEffect(() => {
     try {
-      axios.get('get-products?filterBy=category&filterValue=Gaming laptop&order=-1&page=1&limit=10').then((response) => {
+      axios.get('/get-products?filterBy=category&filterValue=Gaming laptop&order=-1&page=1&limit=10').then((response) => {
         // console.log(response.data);
         setItems(response.data.data)
       })

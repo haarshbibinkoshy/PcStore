@@ -66,7 +66,7 @@ const PopularLaptops = () => {
 
   useEffect(() => {
     try {
-      axios.get('get-products?order=-1&page=1&limit=10&sortBy=price').then((response) => {
+      axios.get('/get-products?order=-1&page=1&limit=10&sortBy=price').then((response) => {
         // console.log(response.data);
         setItems(response.data.data)
       })

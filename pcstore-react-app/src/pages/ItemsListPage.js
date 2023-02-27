@@ -43,9 +43,9 @@ const ItemsListPage = () => {
       // setSearchParams(window.location.search)
       // let searchParams=window.location.search;
       if (location.pathname.includes("search-product")) {
-        url += `search-product${location.search}`
+        url += `/search-product${location.search}`
       } else if (location.pathname.includes("get-products")) {
-        url += `get-products${location.search}`
+        url += `/get-products${location.search}`
       }
       // console.log(`check>>>`,window.location);
 
