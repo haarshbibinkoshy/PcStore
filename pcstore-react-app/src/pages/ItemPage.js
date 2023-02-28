@@ -105,7 +105,7 @@ const ItemPage = (props) => {
   useEffect(() => {
     try {
       axios
-        .get(`get-product/${state}`)
+        .get(`/get-product/${state}`)
         .then((response) => {
           console.log(response.data)
           setItem(response.data.data[0])
