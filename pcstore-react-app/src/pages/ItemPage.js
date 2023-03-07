@@ -1,7 +1,7 @@
-import { Box, ListItemText, Stack, styled, Table, TableBody, TableContainer, TableRow, Typography } from "@mui/material"
+import { Box, Button, ListItemText, Stack, styled, Table, TableBody, TableContainer, TableRow, Typography } from "@mui/material"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import FindProduct from "../components/FindProduct"
 import Footer from "../components/Footer"
 import GamingLaptops from "../components/GamingLaptops"
@@ -17,6 +17,10 @@ import { display, height } from "@mui/system"
 import { TableCell } from "@material-ui/core"
 import TableList from "../components/TableList/TableList"
 import CircularProgress from "@mui/material/CircularProgress"
+import LaptopIcon from '@mui/icons-material/Laptop';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import BluetoothIcon from '@mui/icons-material/Bluetooth';
+import WifiIcon from '@mui/icons-material/Wifi';
 
 const ListItem = styled(Typography)({
   // margin:"100rem",
@@ -93,6 +97,35 @@ const TypographyStyle = styled(Typography)({
   fontSize: "1.3rem",
 })
 
+const KeyHighlightBox = styled(Box)({
+  // margin:"100rem",
+  // padding:"1rem",
+  // backgroundColor:"blue",
+  // marginBottom: "1rem",
+  // height:"01rem"
+  // fontSize:"0.7rem",
+  // fontFamily:"Arial",
+  // lineHeight:"2.5rem",
+  // backgroundColor:"white",
+  display: "flex",
+  // justifyContent: "space-around",
+  // flexWrap:"wrap",
+  // alignItems: "center",
+  // flexDirection: "column",
+  flex: 1,
+  // borderRight:"1px solid #d6d6d6",
+  // borderBottom: {
+  //   borderBottom: '1px solid ',
+  //   '&:nth-last-child(1)': {
+  //     borderBottom: 'none'
+  //  }
+  //  },
+  padding: "0.5rem",
+  // '&:not(:last-child)': {
+  //   borderRight: '1px solid #d6d6d6',
+  // },
+})
+
 
 
 const ItemPage = (props) => {
@@ -106,6 +139,7 @@ const ItemPage = (props) => {
     try {
       axios
         .get(`/get-product/${state}`)
+        // .get(`http://localhost:4000/get-product/${state}`)
         .then((response) => {
           console.log(response.data)
           setItem(response.data.data[0])
@@ -130,6 +164,7 @@ const ItemPage = (props) => {
       {item.length == 0 && <Box
         sx={{
           backgroundColor: "#fff",
+          // backgroundColor: "blue",
           display: "flex",
           flexWrap: "wrap",
           marginBottom: "1rem",
@@ -223,11 +258,16 @@ const ItemPage = (props) => {
               </Box>
             </Box>
             <Box sx={{ backgroundColor: "", flex: "1", padding: "1rem" }}>
-              <Box sx={{ "padding": "1rem 0rem" }}>
+              <Box sx={{ display: "flex",flexWrap:"wrap",justifyContent:"space-between","padding": "1rem 0rem" }}>
 
                 <Typography sx={{ fontSize: "1.2rem", fontWeight: "bold" }}>Rs.{item && item.price} <Typography>(onwards)</Typography></Typography>
+              <Link to={item?.affiliateLink?item?.affiliateLink:"https://www.amazon.in/Acer-SFX14-41G-Creator-Graphics-LPDDR4X/dp/B09G9JBTQX/ref=pd_lpo_3?pd_rd_w=lgbNc&content-id=amzn1.sym.6fa6e9ce-2890-49c2-bd25-c1096b5f4cf4&pf_rd_p=6fa6e9ce-2890-49c2-bd25-c1096b5f4cf4&pf_rd_r=28GQQ11A324KTZVDT73F&pd_rd_wg=mIzip&pd_rd_r=18588627-655a-42ba-b72e-549edf0aa9e3&pd_rd_i=B09G9JBTQX&psc=1"} style={{textDecoration: "none"}}>
+
+              <Button  variant="contained" >Buy Now</Button>
+              </Link>
               </Box>
               <Typography sx={{ fontSize: "1.1rem", fontWeight: "bold" }}>key specs</Typography>
+
               <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly" }}>
 
                 {/* <KeySpecMainBox> */}
@@ -268,6 +308,42 @@ const ItemPage = (props) => {
                     })}
 
                 </KeySpecBox>
+              </Box>
+              
+              <Box sx={{display:"flex",flexWrap:"wrap",justifyContent: "space-evenly",}}>
+
+
+              {/* <KeySpecBox>asdqwe</KeySpecBox> */}
+              <KeyHighlightBox>
+
+               <LaptopIcon /> 
+<Typography>{item?.generalInformation?.thickness}</Typography>
+              </KeyHighlightBox>
+              <KeyHighlightBox>
+
+               <CameraAltIcon />
+           <Typography>
+               {item?.multimedia?.webcam.toLowerCase().includes("yes")?"Web Camera":""}
+           </Typography>
+              </KeyHighlightBox>
+               
+              <KeyHighlightBox>
+               <BluetoothIcon />
+              <Typography>
+               {item?.networking?.bluetooth.toLowerCase().includes("yes")?"Bluetooth":""}
+           </Typography>
+
+              </KeyHighlightBox>
+              <KeyHighlightBox>
+
+               <WifiIcon  /> 
+              <Typography>
+               {item?.networking?.wirelessLAN.toLowerCase()?"Wifi":""}
+           </Typography>
+
+               {/* <Typography>Storage</Typography> */}
+              </KeyHighlightBox>
+              
               </Box>
             </Box>
           </Box>
